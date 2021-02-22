@@ -1,7 +1,9 @@
+
 import time
 from flask import Flask
 from flask.json import jsonify
 import random
+from solver import get_solution
 
 app = Flask(__name__)
 
@@ -11,7 +13,6 @@ def get_current_time():
 
 @app.route('/solution')
 def get_solutions():
-    """
-    Generate solution using breath first search
-    """
-    return jsonify(random.sample(range(9), 9))
+    board = random.sample(range(9), 9)
+    get_solution(board)
+    return jsonify(board)
